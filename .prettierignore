@@ -1,0 +1,15 @@
+# Node.js dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Build output
+dist/
+
+# VSCode settings
+.vscode/
+
+# Prettier ignore file
+.prettierignore
