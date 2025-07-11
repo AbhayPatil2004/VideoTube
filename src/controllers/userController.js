@@ -113,16 +113,27 @@ const loginUser = asyncHandler( async ( req , res ) => {
         .status(200)
         .cookie("accessToken" , accessToken , options )
         .cookie("refreshToken" , refreshToken , options )
-        .json new ApiResponse( 
-            200 ,
-            { user : loggedInUser , accessToken , refreshToken },
-            "User loagged in succesfully";
-
-
+        .json(
+            new ApiResponse( 
+                200 ,
+                { user : loggedInUser , accessToken , refreshToken },
+                "User loagged in succesfully"
+            )
         )
 
 })
 
+const refreshAccessToken = asyncHandler( async ( req , res ) => {
+
+    const incomingRefreshToken = req.cookies.refreshToken ||
+    req.body.refreshToken 
+
+    if( !incomingRefreshToken ){
+        throw new ApiError( 400 , "Refresh Token is requried ");
+    }
+})
+
 export {
-    registerUser
+    registerUser,
+    loginUser
 }
